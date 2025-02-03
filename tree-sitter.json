@@ -4,7 +4,6 @@
     {
       "name": "chs",
       "camelcase": "Chs",
-      "title": "CHS",
       "scope": "source.chs",
       "file-types": [
         "chs"

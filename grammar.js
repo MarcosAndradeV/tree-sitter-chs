@@ -45,7 +45,7 @@ module.exports = grammar({
     ),
     parameter_list: $ => seq(
       "(",
-      optional(seq($.ident, ":", $.type)),
+      repeat(seq($.ident, ":", $.type, optional(","))),
       ")",
     ),
     type_decl: $ => 'type',
