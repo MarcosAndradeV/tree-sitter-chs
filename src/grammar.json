@@ -154,12 +154,34 @@
       ]
     },
     "type_decl": {
-      "type": "STRING",
-      "value": "type"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ident"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type"
+        }
+      ]
     },
     "use_decl": {
-      "type": "STRING",
-      "value": "use"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "use"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_literal"
+        }
+      ]
     },
     "type": {
       "type": "CHOICE",
@@ -187,6 +209,10 @@
         {
           "type": "SYMBOL",
           "name": "pointer_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dst_type"
         }
       ]
     },
@@ -203,9 +229,22 @@
         }
       ]
     },
+    "dst_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "distinct"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type"
+        }
+      ]
+    },
     "ident": {
       "type": "PATTERN",
-      "value": "[a-z_][a-z0-9_]*"
+      "value": "[a-zA-Z_][a-zA-Z0-9_]*"
     },
     "integer_literal": {
       "type": "PATTERN",
@@ -229,7 +268,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": ".*"
+                "value": "[^\\\\']"
               }
             ]
           }
@@ -423,6 +462,10 @@
               {
                 "type": "STRING",
                 "value": "!"
+              },
+              {
+                "type": "STRING",
+                "value": "len"
               }
             ]
           },

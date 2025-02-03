@@ -48,28 +48,33 @@ module.exports = grammar({
       repeat(seq($.ident, ":", $.type, optional(","))),
       ")",
     ),
-    type_decl: $ => 'type',
-    use_decl: $ => 'use',
+    type_decl: $ => seq('type', $.ident, $.type),
+    use_decl: $ => seq('use', $.string_literal),
     type: $ => choice(
       "int",
       "void",
       "char",
       "bool",
       "string",
-      $.pointer_type
+      $.pointer_type,
+      $.dst_type,
     ),
     pointer_type: $ => seq(
       "*",
       $.type
     ),
-    ident: $ => /[a-z_][a-z0-9_]*/,
+    dst_type: $ => seq(
+      "distinct",
+      $.type
+    ),
+    ident: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
     integer_literal: $ => /[0-9][0-9_]*/,
 
     string_literal: $ => seq(
       '"',
       repeat(choice(
         $.escape_sequence,
-        /.*/,
+        /[^\\']/,
       )),
       '"',
     ),
@@ -117,7 +122,7 @@ module.exports = grammar({
     ),
 
     unary_expression: $ => prec(PREC.unary, seq(
-      choice('-', '*', '!'),
+      choice('-', '*', '!', "len"),
       $._expression,
     )),
 
