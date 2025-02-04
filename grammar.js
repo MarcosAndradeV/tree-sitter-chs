@@ -39,18 +39,18 @@ module.exports = grammar({
       'fn',
       field("name", $.ident),
       field("parameters", $.parameter_list),
-      field("ret_type", optional(seq("->", $.type))),
+      field("ret_type", optional(seq("->", $.type_identifier))),
       field("body", repeat(seq($._expression, optional(";")))),
       "end"
     ),
     parameter_list: $ => seq(
       "(",
-      repeat(seq($.ident, ":", $.type, optional(","))),
+      repeat(seq($.ident, ":", $.type_identifier, optional(","))),
       ")",
     ),
-    type_decl: $ => seq('type', $.ident, $.type),
+    type_decl: $ => seq('type', $.ident, $.type_identifier),
     use_decl: $ => seq('use', $.string_literal),
-    type: $ => choice(
+    type_identifier: $ => choice(
       "int",
       "void",
       "char",
@@ -61,11 +61,11 @@ module.exports = grammar({
     ),
     pointer_type: $ => seq(
       "*",
-      $.type
+      $.type_identifier
     ),
     dst_type: $ => seq(
       "distinct",
-      $.type
+      $.type_identifier
     ),
     ident: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
     integer_literal: $ => /[0-9][0-9_]*/,
@@ -111,12 +111,13 @@ module.exports = grammar({
       $.call_expression,
       $.binary_expression,
       $.assignment_expression,
+      $.syscall_expression,
     ),
 
     var_decl: $ => seq(
       $.ident,
       ":",
-      optional($.type),
+      optional($.type_identifier),
       "=",
       $._expression,
     ),
@@ -150,6 +151,11 @@ module.exports = grammar({
 
     call_expression: $ => prec(PREC.call, seq(
       field('function', $._expression),
+      field('arguments', $.arguments),
+    )),
+
+    syscall_expression: $ => prec(PREC.call, seq(
+      "syscall",
       field('arguments', $.arguments),
     )),
 

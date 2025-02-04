@@ -64,7 +64,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "type"
+                    "name": "type_identifier"
                   }
                 ]
               },
@@ -130,7 +130,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "type"
+                "name": "type_identifier"
               },
               {
                 "type": "CHOICE",
@@ -166,7 +166,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "type"
+          "name": "type_identifier"
         }
       ]
     },
@@ -183,7 +183,7 @@
         }
       ]
     },
-    "type": {
+    "type_identifier": {
       "type": "CHOICE",
       "members": [
         {
@@ -225,7 +225,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "type"
+          "name": "type_identifier"
         }
       ]
     },
@@ -238,7 +238,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "type"
+          "name": "type_identifier"
         }
       ]
     },
@@ -406,6 +406,10 @@
         {
           "type": "SYMBOL",
           "name": "assignment_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "syscall_expression"
         }
       ]
     },
@@ -425,7 +429,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "type"
+              "name": "type_identifier"
             },
             {
               "type": "BLANK"
@@ -666,6 +670,27 @@
               "type": "SYMBOL",
               "name": "_expression"
             }
+          },
+          {
+            "type": "FIELD",
+            "name": "arguments",
+            "content": {
+              "type": "SYMBOL",
+              "name": "arguments"
+            }
+          }
+        ]
+      }
+    },
+    "syscall_expression": {
+      "type": "PREC",
+      "value": 15,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "syscall"
           },
           {
             "type": "FIELD",

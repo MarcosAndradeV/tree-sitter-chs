@@ -9,7 +9,8 @@
         "chs"
       ],
       "injection-regex": "^chs$",
-      "class-name": "TreeSitterChs"
+      "class-name": "TreeSitterChs",
+      "highlights": "queries/highlights.scm"
     }
   ],
   "metadata": {

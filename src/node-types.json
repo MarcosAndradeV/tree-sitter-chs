@@ -48,6 +48,10 @@
           "named": true
         },
         {
+          "type": "syscall_expression",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         },
@@ -111,6 +115,10 @@
             "named": true
           },
           {
+            "type": "syscall_expression",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           },
@@ -166,6 +174,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "syscall_expression",
             "named": true
           },
           {
@@ -230,6 +242,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "syscall_expression",
             "named": true
           },
           {
@@ -357,6 +373,10 @@
             "named": true
           },
           {
+            "type": "syscall_expression",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           },
@@ -436,6 +456,10 @@
             "named": true
           },
           {
+            "type": "syscall_expression",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           },
@@ -465,7 +489,7 @@
       "required": true,
       "types": [
         {
-          "type": "type",
+          "type": "type_identifier",
           "named": true
         }
       ]
@@ -529,6 +553,10 @@
             "named": true
           },
           {
+            "type": "syscall_expression",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           },
@@ -571,7 +599,7 @@
             "named": false
           },
           {
-            "type": "type",
+            "type": "type_identifier",
             "named": true
           }
         ]
@@ -628,6 +656,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "syscall_expression",
             "named": true
           },
           {
@@ -693,6 +725,10 @@
             "named": true
           },
           {
+            "type": "syscall_expression",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           },
@@ -751,6 +787,10 @@
             "named": true
           },
           {
+            "type": "syscall_expression",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           },
@@ -779,7 +819,7 @@
           "named": true
         },
         {
-          "type": "type",
+          "type": "type_identifier",
           "named": true
         }
       ]
@@ -794,7 +834,7 @@
       "required": true,
       "types": [
         {
-          "type": "type",
+          "type": "type_identifier",
           "named": true
         }
       ]
@@ -846,6 +886,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "syscall_expression",
             "named": true
           },
           {
@@ -904,22 +948,19 @@
     }
   },
   {
-    "type": "type",
+    "type": "syscall_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "dst_type",
-          "named": true
-        },
-        {
-          "type": "pointer_type",
-          "named": true
-        }
-      ]
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arguments",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -935,7 +976,26 @@
           "named": true
         },
         {
-          "type": "type",
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "dst_type",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
           "named": true
         }
       ]
@@ -987,6 +1047,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "syscall_expression",
           "named": true
         },
         {
@@ -1068,7 +1132,11 @@
           "named": true
         },
         {
-          "type": "type",
+          "type": "syscall_expression",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
           "named": true
         },
         {
@@ -1139,6 +1207,10 @@
             "named": true
           },
           {
+            "type": "syscall_expression",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           },
@@ -1194,6 +1266,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "syscall_expression",
             "named": true
           },
           {
@@ -1362,6 +1438,10 @@
   },
   {
     "type": "string",
+    "named": false
+  },
+  {
+    "type": "syscall",
     "named": false
   },
   {
