@@ -112,7 +112,23 @@ module.exports = grammar({
       $.binary_expression,
       $.assignment_expression,
       $.syscall_expression,
+      $.cast_expression,
+      $.expression_list,
     ),
+
+    expression_list: $ => seq(
+      "{",
+        seq(repeat($._expression), optional(",")),
+      "}",
+    ),
+
+    cast_expression: $ => prec(PREC.cast, seq(
+      "cast",
+      "(",
+        $.type_identifier,
+      ")",
+      $._expression
+    )),
 
     var_decl: $ => seq(
       $.ident,
