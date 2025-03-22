@@ -32,8 +32,6 @@ module.exports = grammar({
     source_file: $ => repeat($._decl),
     _decl: $ => choice(
       $.fn_decl,
-      $.type_decl,
-      $.use_decl,
     ),
     fn_decl: $ => seq(
       'fn',
@@ -48,8 +46,6 @@ module.exports = grammar({
       repeat(seq($.ident, ":", $.type_identifier, optional(","))),
       ")",
     ),
-    type_decl: $ => seq('type', $.ident, $.type_identifier),
-    use_decl: $ => seq('use', $.string_literal),
     type_identifier: $ => choice(
       "int",
       "void",
@@ -57,14 +53,9 @@ module.exports = grammar({
       "bool",
       "string",
       $.pointer_type,
-      $.dst_type,
     ),
     pointer_type: $ => seq(
       "*",
-      $.type_identifier
-    ),
-    dst_type: $ => seq(
-      "distinct",
       $.type_identifier
     ),
     ident: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
@@ -95,7 +86,7 @@ module.exports = grammar({
 
     boolean_literal: $ => choice('true', 'false'),
 
-    comment: $ => '#',
+    comment: $ => '//',
 
     _expression: $ => choice(
       $.ident,
@@ -110,7 +101,7 @@ module.exports = grammar({
       $.while_expression,
       $.call_expression,
       $.binary_expression,
-      $.assignment_expression,
+      $.return_expression,
       $.syscall_expression,
       $.cast_expression,
       $.expression_list,
@@ -139,7 +130,7 @@ module.exports = grammar({
     ),
 
     unary_expression: $ => prec(PREC.unary, seq(
-      choice('-', '*', '!', "len"),
+      choice('-', '*', '!'),
       $._expression,
     )),
 
@@ -205,11 +196,9 @@ module.exports = grammar({
     },
 
 
-    assignment_expression: $ => prec.left(PREC.assign, seq(
-      "set",
-      field('left', $._expression),
-      '=',
-      field('right', $._expression),
+    return_expression: $ => prec.left(PREC.assign, seq(
+      "return",
+      optional(field('expr', $._expression)),
     )),
 
   }
