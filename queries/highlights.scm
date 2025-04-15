@@ -26,6 +26,7 @@
 ] @string
 
 (fn_decl name: (ident) @function)
+(extern_fn_decl name: (ident) @function)
 (call_expression function: (ident) @function)
 (call_expression arguments: (arguments) @call.inner)
 

@@ -43,8 +43,7 @@ module.exports = grammar({
       "end"
     ),
     extern_fn_decl: $ => seq(
-      'extern',
-      'fn',
+      seq("extern", 'fn'),
       field("name", $.ident),
       field("parameters", $.parameter_list),
       field("ret_type", optional(seq("->", $.type_identifier))),

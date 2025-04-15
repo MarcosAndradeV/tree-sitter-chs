@@ -542,6 +542,46 @@
     }
   },
   {
+    "type": "extern_fn_decl",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameter_list",
+            "named": true
+          }
+        ]
+      },
+      "ret_type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "->",
+            "named": false
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "fn_decl",
     "named": true,
     "fields": {
@@ -1075,6 +1115,10 @@
       "required": false,
       "types": [
         {
+          "type": "extern_fn_decl",
+          "named": true
+        },
+        {
           "type": "fn_decl",
           "named": true
         }
@@ -1545,6 +1589,10 @@
   },
   {
     "type": "end",
+    "named": false
+  },
+  {
+    "type": "extern",
     "named": false
   },
   {
