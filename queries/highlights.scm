@@ -2,6 +2,11 @@
   "fn"
   "end"
   "return"
+  "while"
+  "syscall"
+  "cast"
+  "extern"
+  "->"
 ] @keyword
 
 (type_identifier) @type
