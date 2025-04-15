@@ -41,6 +41,13 @@ module.exports = grammar({
       field("body", repeat(seq($._expression, optional(";")))),
       "end"
     ),
+    extern_fn_decl: $ => seq(
+      'extern',
+      'fn',
+      field("name", $.ident),
+      field("parameters", $.parameter_list),
+      field("ret_type", optional(seq("->", $.type_identifier))),
+    ),
     parameter_list: $ => seq(
       "(",
       repeat(seq($.ident, ":", $.type_identifier, optional(","))),
