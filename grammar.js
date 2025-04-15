@@ -32,6 +32,7 @@ module.exports = grammar({
     source_file: $ => repeat($._decl),
     _decl: $ => choice(
       $.fn_decl,
+      $.extern_fn_decl,
     ),
     fn_decl: $ => seq(
       'fn',
